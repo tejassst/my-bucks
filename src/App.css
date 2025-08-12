@@ -1,32 +1,32 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
+body {
   background-color: #17181f;
   color: #ddd;
 }
-main{
+main {
   max-width: 360px;
   margin: 40px auto;
 }
-h1{
+h1 {
   text-align: center;
   color: #fff;
   margin: 0;
   font-size: 2.5rem;
 }
-h1 span{
+h1 span {
   font-size: 1.4rem;
   vertical-align: top;
   display: inline-block;
   margin-top: 5px;
   margin-left: 2px;
 }
-form{
+form {
   margin-top: 20px;
 }
-form input{
+form input {
   width: 100%;
   background-color: transparent;
   color: #ddd;
@@ -34,15 +34,15 @@ form input{
   padding: 2px 5px;
   border-radius: 5px;
 }
-form input[type="datetime-local"]{
+form input[type='datetime-local'] {
   color: #777;
 }
-form div.basic{
+form div.basic {
   display: flex;
   gap: 5px;
   margin-bottom: 5px;
 }
-form button{
+form button {
   margin-top: 5px;
   width: 100%;
   border: 0;
@@ -50,35 +50,51 @@ form button{
   padding: 5px;
   background-color: #ddd;
 }
-div.transactions{
+div.transactions {
   margin-top: 13px;
 }
-div.transaction{
+div.transaction {
   display: flex;
   padding: 5px 0;
   justify-content: space-between;
   border-top: 1px solid #30313d;
 }
-div.transaction:first-child{
+div.transaction:first-child {
   border-top: 0;
 }
-div.transaction div.name{
+div.transaction div.name {
   font-size: 1rem;
 }
-div.transaction div.description{
-  font-size: .8rem;
-  color:#888;
+div.transaction div.description {
+  font-size: 0.8rem;
+  color: #888;
 }
-div.right{
+div.right {
   text-align: right;
 }
-div.price.green{
+div.price.green {
   color: rgb(39, 255, 39);
 }
-div.price.red{
+div.price.red {
   color: red;
 }
-div.transaction div.datetime{
-font-size: .7rem;
-color: #888;
+div.transaction div.datetime {
+  font-size: 0.7rem;
+  color: #888;
+}
+div.right div.delete {
+  margin-top: 2px;
+}
+div.right div.delete button {
+  cursor: pointer;
+  color: red;
+  background: transparent;
+  border: 1px solid red;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+}
+div.right div.delete button:hover {
+  background-color: red;
+  color: white;
 }

@@ -54,4 +54,23 @@ app.get('/api/transactions', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch transactions' });
   }
 });
+
+app.delete('/api/transaction/:id', async (req, res) => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+
+    const { id } = req.params;
+    const deletedTransaction = await Transaction.findByIdAndDelete(id);
+
+    if (!deletedTransaction) {
+      return res.status(404).json({ error: 'Transaction not found' });
+    }
+
+    res.json({ success: true, deleted: deletedTransaction });
+  } catch (error) {
+    console.error('Error deleting transaction:', error);
+    res.status(500).json({ error: 'Failed to delete transaction' });
+  }
+});
+
 //5BGBtZuFeDIqsqnA - password for database
