@@ -21,8 +21,44 @@ function App() {
 
   function addTransaction(ev) {
     ev.preventDefault();
+
+    // Basic validation
+    if (!name.trim()) {
+      alert('Please enter an amount and item name');
+      return;
+    }
+
     const url = process.env.REACT_APP_API_URL + '/transaction';
     const price = name.split(' ')[0];
+
+    // Convert datetime-local format to ISO string or use current time
+    let finalDatetime;
+    if (datetime) {
+      try {
+        // datetime-local gives us YYYY-MM-DDTHH:mm format, convert to ISO
+        const dateObj = new Date(datetime);
+        if (isNaN(dateObj.getTime())) {
+          alert('Please enter a valid date and time');
+          return;
+        }
+        finalDatetime = dateObj.toISOString();
+      } catch (error) {
+        console.error('Date conversion error:', error);
+        alert('Please enter a valid date and time');
+        return;
+      }
+    } else {
+      // Use current datetime if none provided
+      finalDatetime = new Date().toISOString();
+    }
+
+    console.log('Submitting:', {
+      price,
+      name: name.substring(price.length + 1),
+      description,
+      datetime: finalDatetime,
+    });
+
     fetch(url, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -30,18 +66,27 @@ function App() {
         price,
         name: name.substring(price.length + 1),
         description,
-        datetime,
+        datetime: finalDatetime,
       }),
-    }).then((response) => {
-      response.json().then((json) => {
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
         setName('');
         setDatetime('');
         setDescription('');
 
         console.log('result', json);
         getTransactions().then(setTransactions);
+      })
+      .catch((error) => {
+        console.error('Error adding transaction:', error);
+        alert('Error adding transaction. Please try again.');
       });
-    });
   }
   function deleteTransaction(id) {
     const url = process.env.REACT_APP_API_URL + '/transaction/' + id;
@@ -72,24 +117,32 @@ function App() {
       </h1>
       <form onSubmit={addTransaction}>
         <div className="basic">
-          <input
-            type="text"
-            value={name}
-            onChange={(ev) => setName(ev.target.value)}
-            placeholder={'+200 samsung tv'}
-          />
-          <input
-            value={datetime}
-            onChange={(ev) => setDatetime(ev.target.value)}
-            type="datetime-local"
-          />
+          <div className="field-group">
+            <label className="field-label">Amount & Item</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(ev) => setName(ev.target.value)}
+              placeholder={'+200 samsung tv'}
+              required
+            />
+          </div>
+          <div className="field-group">
+            <label className="field-label">Date & Time</label>
+            <input
+              value={datetime}
+              onChange={(ev) => setDatetime(ev.target.value)}
+              type="datetime-local"
+            />
+          </div>
         </div>
-        <div className="description">
+        <div className="field-group">
+          <label className="field-label">Description</label>
           <input
             type="text"
             value={description}
             onChange={(ev) => setDescription(ev.target.value)}
-            placeholder={'description'}
+            placeholder={'Additional details'}
           />
         </div>
         <button type="submit">Add new transaction</button>

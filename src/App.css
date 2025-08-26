@@ -2,99 +2,283 @@
   box-sizing: border-box;
 }
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
 body {
-  background-color: #17181f;
-  color: #ddd;
+  background: linear-gradient(135deg, #0f0f23 0%, #17181f 50%, #1a1b26 100%);
+  background-attachment: fixed;
+  color: #e2e8f0;
+  min-height: 100vh;
 }
 main {
-  max-width: 360px;
-  margin: 40px auto;
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 0 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@media (min-width: 768px) {
+  main {
+    margin: 40px auto;
+    padding: 0;
+  }
 }
 h1 {
   text-align: center;
   color: #fff;
-  margin: 0;
-  font-size: 2.5rem;
+  margin: 0 0 24px 0;
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 h1 span {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   vertical-align: top;
   display: inline-block;
-  margin-top: 5px;
-  margin-left: 2px;
+  margin-top: 8px;
+  margin-left: 4px;
+  opacity: 0.9;
 }
 form {
   margin-top: 20px;
 }
 form input {
   width: 100%;
-  background-color: transparent;
+  background-color: rgba(48, 49, 61, 0.3);
   color: #ddd;
   border: 2px solid #30313d;
-  padding: 2px 5px;
-  border-radius: 5px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+form input:focus {
+  border-color: #4f46e5;
+  background-color: rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+form input:hover {
+  border-color: #434356;
+  background-color: rgba(48, 49, 61, 0.5);
 }
 form input[type='datetime-local'] {
-  color: #777;
+  color: #bbb;
+}
+
+form input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+form .field-group {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+form .field-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background: linear-gradient(135deg, #0f0f23 0%, #17181f 50%, #1a1b26 100%);
+  color: #999;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  z-index: 1;
 }
 form div.basic {
   display: flex;
-  gap: 5px;
-  margin-bottom: 5px;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 480px) {
+  form div.basic {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h1 span {
+    font-size: 1.2rem;
+  }
+
+  form input {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+
+  form button {
+    padding: 16px 20px;
+    font-size: 1.1rem;
+  }
+
+  div.right div.delete button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 form button {
-  margin-top: 5px;
+  margin-top: 16px;
   width: 100%;
   border: 0;
-  border-radius: 5px;
-  padding: 5px;
-  background-color: #ddd;
+  border-radius: 8px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+form button:hover {
+  background: linear-gradient(135deg, #4338ca, #4f46e5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+form button:active {
+  transform: translateY(0);
 }
 div.transactions {
-  margin-top: 13px;
+  margin-top: 24px;
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
 }
 div.transaction {
   display: flex;
-  padding: 5px 0;
+  padding: 16px;
   justify-content: space-between;
-  border-top: 1px solid #30313d;
+  background-color: rgba(48, 49, 61, 0.2);
+  border: 1px solid rgba(48, 49, 61, 0.4);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  animation: slideInUp 0.4s ease-out;
+  position: relative;
+  overflow: hidden;
 }
-div.transaction:first-child {
-  border-top: 0;
+
+div.transaction::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(79, 70, 229, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+div.transaction:hover::before {
+  left: 100%;
+}
+div.transaction:hover {
+  background-color: rgba(48, 49, 61, 0.3);
+  border-color: rgba(79, 70, 229, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 div.transaction div.name {
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
 }
 div.transaction div.description {
-  font-size: 0.8rem;
-  color: #888;
+  font-size: 0.85rem;
+  color: #999;
+  opacity: 0.8;
 }
 div.right {
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
 }
 div.price.green {
-  color: rgb(39, 255, 39);
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 div.price.red {
-  color: red;
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 div.transaction div.datetime {
-  font-size: 0.7rem;
-  color: #888;
-}
-div.right div.delete {
-  margin-top: 2px;
+  font-size: 0.75rem;
+  color: #666;
+  opacity: 0.7;
 }
 div.right div.delete button {
   cursor: pointer;
-  color: red;
-  background: transparent;
-  border: 1px solid red;
-  border-radius: 3px;
-  padding: 2px 6px;
-  font-size: 0.7rem;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  outline: none;
 }
 div.right div.delete button:hover {
-  background-color: red;
+  background-color: #ef4444;
   color: white;
+  border-color: #ef4444;
+  transform: scale(1.05);
+}
+div.right div.delete button:active {
+  transform: scale(0.95);
 }
