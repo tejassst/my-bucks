@@ -124,6 +124,7 @@ form .field-label {
 }
 form div.basic {
   display: flex;
+  flex-direction: column;
   gap: 8px;
   margin-bottom: 12px;
 }
@@ -281,4 +282,285 @@ div.right div.delete button:hover {
 }
 div.right div.delete button:active {
   transform: scale(0.95);
+}
+
+.field-label {
+  margin-bottom: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #666;
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(
+    135deg,
+    rgba(79, 70, 229, 0.1),
+    rgba(99, 102, 241, 0.05)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: 16px;
+  padding: 20px 20px 20px 20px;
+  margin: 20px auto 32px auto;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Header Top Section with Logo */
+.header-top {
+  margin-bottom: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  border-color: rgba(79, 70, 229, 0.4);
+}
+
+.logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 480px) {
+  .logo {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .logo-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  .header-top {
+    margin-bottom: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  header {
+    margin: 40px auto 40px auto;
+    padding: 28px 24px 24px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    margin: 16px 20px 24px 20px;
+    max-width: none;
+    padding: 20px 16px 16px 16px;
+  }
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(79, 70, 229, 0.03),
+    transparent
+  );
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(-100%) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%) translateY(0%) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+header h1 {
+  margin: 0 0 20px 0;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 16px 0;
+  }
+}
+
+/* Sort Dropdown Styles */
+.Sort {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .Sort {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+}
+
+.Sort .field-label {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .Sort .field-label {
+    text-align: center;
+    font-size: 0.85rem;
+  }
+}
+
+/* Custom Select Dropdown */
+.Sort select {
+  background: rgba(48, 49, 61, 0.4);
+  color: #e2e8f0;
+  border: 2px solid rgba(79, 70, 229, 0.3);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-width: 140px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 480px) {
+  .Sort select {
+    width: 100%;
+    min-width: unset;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+.Sort select:hover {
+  border-color: rgba(79, 70, 229, 0.5);
+  background: rgba(79, 70, 229, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.Sort select:focus {
+  border-color: #4f46e5;
+  background: rgba(79, 70, 229, 0.2);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1),
+    0 4px 12px rgba(79, 70, 229, 0.3);
+  transform: translateY(-1px);
+}
+
+.Sort select:active {
+  transform: translateY(0);
+}
+
+/* Style the dropdown arrow */
+.Sort select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e2e8f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* Option styling */
+.Sort select option {
+  background: #1a1b26;
+  color: #e2e8f0;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.Sort select option:hover {
+  background: rgba(79, 70, 229, 0.2);
+}
+
+.Sort select option:checked {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+}
+
+/* Add a subtle glow effect on focus */
+.Sort select:focus {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+/* Add pulse animation when changing */
+.Sort select.changing {
+  animation: pulse 0.6s ease-in-out;
+}
+
+/* Responsive adjustments for the dropdown */
+@media (max-width: 350px) {
+  .Sort {
+    gap: 6px;
+  }
+
+  .Sort .field-label {
+    font-size: 0.8rem;
+  }
+
+  .Sort select {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+    padding-right: 36px;
+    background-size: 14px;
+    background-position: right 10px center;
+  }
 }

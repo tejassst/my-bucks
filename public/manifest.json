@@ -1,11 +1,13 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Money Tracker",
+  "name": "Money Tracker - Personal Finance Manager",
+  "description": "Track your income and expenses with a beautiful, intuitive interface",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "logo.png",
+      "sizes": "512x512 256x256 192x192 144x144 96x96 72x72 64x64 48x48 32x32 16x16",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "logo192.png",
@@ -18,8 +20,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "theme_color": "#4f46e5",
+  "background_color": "#0f0f23",
+  "categories": ["finance", "productivity", "utilities"]
 }

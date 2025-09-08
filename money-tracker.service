@@ -1,0 +1,53 @@
+[Unit]
+Description=Money Tracker Web Application
+Documentation=https://github.com/yourusername/money-tracker
+After=network.target mongod.service
+Wants=mongod.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/money-tracker
+ExecStart=/usr/bin/node api/index.js
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=60s
+StartLimitBurst=3
+
+# Environment
+Environment=NODE_ENV=production
+Environment=PORT=4040
+EnvironmentFile=-/var/www/money-tracker/.env
+
+# Security settings
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/money-tracker/logs
+ReadWritePaths=/var/www/money-tracker/backups
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=money-tracker
+
+[Install]
+WantedBy=multi-user.target
+
+# Installation instructions:
+# 1. Copy this file to /etc/systemd/system/money-tracker.service
+# 2. sudo systemctl daemon-reload
+# 3. sudo systemctl enable money-tracker.service
+# 4. sudo systemctl start money-tracker.service
+# 5. sudo systemctl status money-tracker.service
