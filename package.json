@@ -26,13 +26,12 @@
     "winston": "^3.11.0"
   },
   "scripts": {
-    "start": "node api/index.js",
-    "dev:start": "react-scripts start",
+    "start": "react-scripts start",
     "server": "node api/index.js",
     "dev": "concurrently --kill-others --prefix=\"[{name}]\" --names=\"API,WEB\" \"npm run server\" \"npm start\"",
     "build": "react-scripts build",
     "build:prod": "NODE_ENV=production npm run build",
-    "start:prod": "NODE_ENV=production node api/index.js",
+    "start:prod": "NODE_ENV=production PORT=4040 node api/index.js",
     "deploy:build": "npm run build:prod && npm run start:prod",
     "docker:build": "docker build -t mybucks .",
     "docker:run": "docker run -p 4040:4040 --env-file .env mybucks",
