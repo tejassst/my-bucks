@@ -339,16 +339,9 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// Serve React build files
-app.use(express.static(path.join(__dirname, '../build')));
-
-// Handle React routing - only for non-API routes
+// API-only backend - frontend is deployed separately as static site
 app.get('*', (req, res) => {
-  if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, '../build/index.html'));
-  } else {
-    res.status(404).json({ error: 'API route not found' });
-  }
+  res.status(404).json({ error: 'API route not found' });
 });
 
 const port = process.env.PORT || 4040;
