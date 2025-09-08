@@ -26,7 +26,8 @@
     "winston": "^3.11.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node api/index.js",
+    "dev:start": "react-scripts start",
     "server": "node api/index.js",
     "dev": "concurrently --kill-others --prefix=\"[{name}]\" --names=\"API,WEB\" \"npm run server\" \"npm start\"",
     "build": "react-scripts build",

@@ -333,25 +333,22 @@ app.delete(
   }
 );
 
-// Serve React build files (only needed for production)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../build')));
-
-  // Handle React routing
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build/index.html'));
-  });
-}
-
 // Global error handler
 app.use((err, req, res, next) => {
   logger.error('Unhandled error:', err);
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({ error: 'Route not found' });
+// Serve React build files
+app.use(express.static(path.join(__dirname, '../build')));
+
+// Handle React routing - only for non-API routes
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+  } else {
+    res.status(404).json({ error: 'API route not found' });
+  }
 });
 
 const port = process.env.PORT || 4040;

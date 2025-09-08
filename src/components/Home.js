@@ -1,7 +1,9 @@
-import './Home.css';
+import '../style/Home.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -10,15 +12,41 @@ function Home() {
   const [sort, setSort] = useState('latest');
 
   useEffect(() => {
-    getTransactions(sort || 'latest').then(setTransactions);
-  }, [sort]);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+    
+    const fetchTransactions = async () => {
+      const data = await getTransactions(sort || 'latest');
+      setTransactions(data);
+    };
+    
+    fetchTransactions();
+  }, [sort, navigate]);
+
+  const getAuthHeaders = () => {
+    const token = localStorage.getItem('token');
+    return {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
+  };
 
   async function getTransactions(sortType = sort) {
     const url =
       process.env.REACT_APP_API_URL + `/transactions?sort=${sortType}`;
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: getAuthHeaders(),
+      });
       if (!response.ok) {
+        if (response.status === 401) {
+          localStorage.removeItem('token');
+          navigate('/login');
+          return [];
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const json = await response.json();
@@ -77,7 +105,7 @@ function Home() {
 
     fetch(url, {
       method: 'POST',
-      headers: { 'Content-type': 'application/json' },
+      headers: getAuthHeaders(),
       body: JSON.stringify({
         price,
         name: name.substring(price.length + 1),
@@ -87,6 +115,11 @@ function Home() {
     })
       .then((response) => {
         if (!response.ok) {
+          if (response.status === 401) {
+            localStorage.removeItem('token');
+            navigate('/login');
+            return;
+          }
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
@@ -110,9 +143,15 @@ function Home() {
 
     fetch(url, {
       method: 'DELETE',
+      headers: getAuthHeaders(),
     })
       .then((response) => {
         if (!response.ok) {
+          if (response.status === 401) {
+            localStorage.removeItem('token');
+            navigate('/login');
+            return;
+          }
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
