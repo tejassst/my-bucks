@@ -1,4 +1,4 @@
-# Money Tracker 💰
+# myBucks 💰
 
 A full-stack web application for tracking personal financial transactions with a clean, intuitive interface.
 
@@ -38,7 +38,7 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the repository
 ```bash
 git clone <your-repository-url>
-cd money-tracker
+cd myBucks
 ```
 
 ### 2. Install dependencies
@@ -57,7 +57,7 @@ cp .env.example .env
 Edit `.env` with your configuration:
 ```env
 # Database Configuration
-MONGO_URL=mongodb://localhost:27017/money-tracker
+MONGO_URL=mongodb://localhost:27017/mybucks
 
 # API Configuration
 PORT=4040
@@ -152,7 +152,7 @@ DELETE /api/transaction/:id
 ## 🏗️ Project Structure
 
 ```
-money-tracker/
+myBucks/
 ├── src/                    # React frontend source
 │   ├── App.js             # Main React component
 │   ├── App.css            # Application styles
@@ -179,15 +179,15 @@ npm run build
 ```env
 NODE_ENV=production
 PORT=80
-MONGO_URL=mongodb+srv://user:pass@cluster.mongodb.net/money-tracker
+MONGO_URL=mongodb+srv://user:pass@cluster.mongodb.net/mybucks
 REACT_APP_API_URL=https://yourdomain.com/api
 ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
 ```
 
 ### Using Docker
 ```bash
-docker build -t money-tracker .
-docker run -p 4040:4040 --env-file .env money-tracker
+docker build -t mybucks .
+docker run -p 4040:4040 --env-file .env mybucks
 ```
 
 ## 🔒 Security Features

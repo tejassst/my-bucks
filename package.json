@@ -1,5 +1,5 @@
 {
-  "name": "money-tracker",
+  "name": "mybucks",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -34,8 +34,8 @@
     "build:prod": "NODE_ENV=production npm run build",
     "start:prod": "NODE_ENV=production PORT=4040 node api/index.js",
     "deploy:build": "npm run build:prod && npm run start:prod",
-    "docker:build": "docker build -t money-tracker .",
-    "docker:run": "docker run -p 4040:4040 --env-file .env money-tracker",
+    "docker:build": "docker build -t mybucks .",
+    "docker:run": "docker run -p 4040:4040 --env-file .env mybucks",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:dev": "docker-compose --profile dev up -d",

@@ -1,6 +1,6 @@
 [Unit]
-Description=Money Tracker Web Application
-Documentation=https://github.com/yourusername/money-tracker
+Description=myBucks Web Application
+Documentation=https://github.com/yourusername/mybucks
 After=network.target mongod.service
 Wants=mongod.service
 
@@ -8,7 +8,7 @@ Wants=mongod.service
 Type=simple
 User=www-data
 Group=www-data
-WorkingDirectory=/var/www/money-tracker
+WorkingDirectory=/var/www/mybucks
 ExecStart=/usr/bin/node api/index.js
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/bin/kill -TERM $MAINPID
@@ -20,14 +20,14 @@ StartLimitBurst=3
 # Environment
 Environment=NODE_ENV=production
 Environment=PORT=4040
-EnvironmentFile=-/var/www/money-tracker/.env
+EnvironmentFile=-/var/www/mybucks/.env
 
 # Security settings
 NoNewPrivileges=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/var/www/money-tracker/logs
-ReadWritePaths=/var/www/money-tracker/backups
+ReadWritePaths=/var/www/mybucks/logs
+ReadWritePaths=/var/www/mybucks/backups
 PrivateTmp=true
 ProtectKernelTunables=true
 ProtectKernelModules=true
@@ -40,14 +40,14 @@ LimitNPROC=4096
 # Logging
 StandardOutput=journal
 StandardError=journal
-SyslogIdentifier=money-tracker
+SyslogIdentifier=mybucks
 
 [Install]
 WantedBy=multi-user.target
 
 # Installation instructions:
-# 1. Copy this file to /etc/systemd/system/money-tracker.service
+# 1. Copy this file to /etc/systemd/system/mybucks.service
 # 2. sudo systemctl daemon-reload
-# 3. sudo systemctl enable money-tracker.service
-# 4. sudo systemctl start money-tracker.service
-# 5. sudo systemctl status money-tracker.service
+# 3. sudo systemctl enable mybucks.service
+# 4. sudo systemctl start mybucks.service
+# 5. sudo systemctl status mybucks.service

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Production deployment script for Money Tracker
+# Production deployment script for myBucks
 # Usage: ./scripts/deploy.sh [environment]
 
 set -e  # Exit on any error
 
 ENVIRONMENT=${1:-production}
-PROJECT_NAME="money-tracker"
+PROJECT_NAME="mybucks"
 
 echo "🚀 Starting deployment for environment: $ENVIRONMENT"
 
@@ -154,7 +154,7 @@ deploy_native() {
     nohup npm run start:prod > logs/deployment.log 2>&1 &
     
     # Store PID
-    echo $! > money-tracker.pid
+    echo $! > mybucks.pid
     
     if health_check; then
         print_success "Native deployment successful"

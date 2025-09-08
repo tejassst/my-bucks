@@ -4,38 +4,38 @@ services:
   # MongoDB database
   mongodb:
     image: mongo:7.0
-    container_name: money-tracker-db
+    container_name: mybucks-db
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password123
-      MONGO_INITDB_DATABASE: money_tracker
+      MONGO_INITDB_DATABASE: mybucks
     volumes:
       - mongodb_data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     ports:
       - "27017:27017"
     networks:
-      - money-tracker-network
+      - mybucks-network
 
-  # Money Tracker Application
+  # myBucks Application
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: money-tracker-app
+    container_name: mybucks-app
     restart: unless-stopped
     environment:
       - NODE_ENV=production
       - PORT=4040
-      - MONGO_URL=mongodb://admin:password123@mongodb:27017/money_tracker?authSource=admin
+      - MONGO_URL=mongodb://admin:password123@mongodb:27017/mybucks?authSource=admin
       - ALLOWED_ORIGINS=http://localhost:4040,http://127.0.0.1:4040
     ports:
       - "4040:4040"
     depends_on:
       - mongodb
     networks:
-      - money-tracker-network
+      - mybucks-network
     volumes:
       - ./logs:/app/logs
     healthcheck:
@@ -48,16 +48,16 @@ services:
   # Development database (for local development)
   mongodb-dev:
     image: mongo:7.0
-    container_name: money-tracker-db-dev
+    container_name: mybucks-db-dev
     restart: unless-stopped
     environment:
-      MONGO_INITDB_DATABASE: money_tracker_dev
+      MONGO_INITDB_DATABASE: mybucks_dev
     volumes:
       - mongodb_dev_data:/data/db
     ports:
       - "27018:27017"
     networks:
-      - money-tracker-network
+      - mybucks-network
     profiles:
       - dev
 
@@ -68,7 +68,7 @@ volumes:
     driver: local
 
 networks:
-  money-tracker-network:
+  mybucks-network:
     driver: bridge
 
 # Development override
@@ -84,7 +84,7 @@ services:
     command: npm run dev
     environment:
       - NODE_ENV=development
-      - MONGO_URL=mongodb://mongodb-dev:27017/money_tracker_dev
+      - MONGO_URL=mongodb://mongodb-dev:27017/mybucks_dev
       - REACT_APP_API_URL=http://localhost:4040/api
     volumes:
       - .:/app

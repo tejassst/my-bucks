@@ -44,8 +44,8 @@ stop_native() {
     print_status "Stopping native process..."
     
     # Try to stop using PID file first
-    if [ -f "money-tracker.pid" ]; then
-        PID=$(cat money-tracker.pid)
+    if [ -f "mybucks.pid" ]; then
+        PID=$(cat mybucks.pid)
         if kill -0 $PID 2>/dev/null; then
             print_status "Stopping process with PID: $PID"
             kill -TERM $PID
@@ -57,11 +57,11 @@ stop_native() {
                 kill -KILL $PID
             fi
             
-            rm -f money-tracker.pid
+            rm -f mybucks.pid
             print_success "Process stopped successfully"
         else
             print_warning "PID file exists but process not running"
-            rm -f money-tracker.pid
+            rm -f mybucks.pid
         fi
     fi
     
@@ -93,7 +93,7 @@ stop_auto() {
     fi
     
     # Check for native processes
-    if pgrep -f "node api/index.js" > /dev/null || [ -f "money-tracker.pid" ]; then
+    if pgrep -f "node api/index.js" > /dev/null || [ -f "mybucks.pid" ]; then
         print_status "Native process detected"
         stop_native
     fi
@@ -126,8 +126,8 @@ show_status() {
     fi
     
     # Check PID file
-    if [ -f "money-tracker.pid" ]; then
-        PID=$(cat money-tracker.pid)
+    if [ -f "mybucks.pid" ]; then
+        PID=$(cat mybucks.pid)
         if kill -0 $PID 2>/dev/null; then
             print_status "PID file exists with active process: $PID"
         else
