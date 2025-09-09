@@ -2,6 +2,8 @@ import '../style/Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');

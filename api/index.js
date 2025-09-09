@@ -16,6 +16,12 @@ const Transaction = require('./models/Transaction.js');
 
 const app = express();
 
+// Request logging middleware
+app.use((req, res, next) => {
+  console.log(`[${req.method}] ${req.originalUrl} from ${req.headers.origin}`);
+  next();
+});
+
 // Configure Winston logger
 const logger = winston.createLogger({
   level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
@@ -109,6 +115,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.options('*', cors(corsOptions));
 
 app.use('/api/transaction', auth);

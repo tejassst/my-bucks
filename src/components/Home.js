@@ -2,6 +2,8 @@ import '../style/Home.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Home() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -35,10 +37,11 @@ function Home() {
   };
 
   async function getTransactions(sortType = sort) {
-    const url = `${process.env.REACT_APP_API_URL}/api/transactions?sort=${sortType}`;
+    const url = `${API_URL}/api/transactions?sort=${sortType}`;
     try {
       const response = await fetch(url, {
         headers: getAuthHeaders(),
+        credentials: 'include',
       });
       if (!response.ok) {
         if (response.status === 401) {
