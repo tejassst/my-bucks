@@ -172,6 +172,11 @@ function Home() {
   balance = balance.toFixed(2);
   const fraction = balance.split('.')[1];
   balance = balance.split('.')[0];
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
   return (
     <div className="App">
       <header>
@@ -290,6 +295,11 @@ function Home() {
             ))}
         </div>
       </main>
+      <footer className="footer">
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
+      </footer>
     </div>
   );
 }
