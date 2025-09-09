@@ -70,7 +70,12 @@ connectDB().catch((error) => {
 });
 
 // Security middleware
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+    crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
+  })
+);
 
 // Rate limiting
 const limiter = rateLimit({
@@ -87,11 +92,10 @@ app.use('/api/', limiter);
 
 // CORS configuration
 const corsOptions = {
-  origin:
-    process.env.NODE_ENV === 'production'
-      ? process.env.ALLOWED_ORIGINS?.split(',') || false
-      : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: ['https://my-bucks.vercel.app', 'http://localhost:3000'],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions));
