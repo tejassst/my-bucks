@@ -90,14 +90,16 @@ const limiter = rateLimit({
 
 app.use('/api/', limiter);
 
-// CORS configuration
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
+
+console.log('✅ Allowed Origins:', allowedOrigins);
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.error(`❌ CORS blocked: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -107,6 +109,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use('/api/transaction', auth);
 app.use('/api/transactions', auth);
 
