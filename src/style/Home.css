@@ -63,7 +63,8 @@ h1 {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-h1 span {
+h1 span.fraction {
+  color: #fff;
   font-size: 1.5rem;
   vertical-align: top;
   display: inline-block;
@@ -71,6 +72,7 @@ h1 span {
   margin-left: 4px;
   opacity: 0.9;
 }
+
 form {
   margin-top: 20px;
 }

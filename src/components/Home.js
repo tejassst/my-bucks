@@ -206,8 +206,8 @@ function Home() {
             title="Select how to sort your transactions"
           >
             <option value="">🔄 Choose sorting</option>
-            <option value="latest">🕐 Latest First</option>
-            <option value="oldest">⏰ Oldest First</option>
+            <option value="latest">⏳ Latest First</option>
+            <option value="oldest">🕒 Oldest First</option>
             <option value="highest">💰 Highest Amount</option>
             <option value="lowest">💸 Lowest Amount</option>
           </select>
@@ -216,7 +216,7 @@ function Home() {
       <main>
         <h1>
           ${balance}
-          <span>{fraction}</span>
+          <span className="fraction">{fraction}</span>
         </h1>
         <form onSubmit={addTransaction}>
           <div className="basic">
