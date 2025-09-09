@@ -17,12 +17,12 @@ function Home() {
       navigate('/login');
       return;
     }
-    
+
     const fetchTransactions = async () => {
       const data = await getTransactions(sort || 'latest');
       setTransactions(data);
     };
-    
+
     fetchTransactions();
   }, [sort, navigate]);
 
@@ -35,8 +35,7 @@ function Home() {
   };
 
   async function getTransactions(sortType = sort) {
-    const url =
-      process.env.REACT_APP_API_URL + `/transactions?sort=${sortType}`;
+    const url = `${process.env.REACT_APP_API_URL}/api/transactions?sort=${sortType}`;
     try {
       const response = await fetch(url, {
         headers: getAuthHeaders(),

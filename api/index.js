@@ -92,10 +92,11 @@ app.use('/api/', limiter);
 
 // CORS configuration
 const corsOptions = {
-  origin: ['https://my-bucks.vercel.app', 'http://localhost:3000'],
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions));
@@ -169,6 +170,11 @@ app.post('/api/auth/login', async (req, res) => {
       { expiresIn: '1h' } // token expires in 1 hour
     );
 
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
     res.json({ token });
   } catch (err) {
     console.error(err);
