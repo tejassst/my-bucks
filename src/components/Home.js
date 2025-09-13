@@ -74,7 +74,7 @@ function Home() {
       return;
     }
 
-    const url = process.env.REACT_APP_API_URL + '/transaction';
+    const url = `${API_URL}/api/transaction`;
     const price = name.split(' ')[0];
 
     // Convert datetime-local format to ISO string or use current time
@@ -141,7 +141,7 @@ function Home() {
       });
   }
   function deleteTransaction(id) {
-    const url = process.env.REACT_APP_API_URL + '/transaction/' + id;
+    const url = `${API_URL}/api/transaction/${id}`;
 
     fetch(url, {
       method: 'DELETE',

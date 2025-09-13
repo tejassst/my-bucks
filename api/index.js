@@ -188,11 +188,6 @@ app.post('/api/auth/login', async (req, res) => {
       { expiresIn: '1h' } // token expires in 1 hour
     );
 
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    );
     res.json({ token });
   } catch (err) {
     console.error(err);
