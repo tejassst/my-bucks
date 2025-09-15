@@ -12,7 +12,7 @@ function Home() {
   const [description, setDescription] = useState('');
   const [transactions, setTransactions] = useState([]);
   const [sort, setSort] = useState('latest');
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('$');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
