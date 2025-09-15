@@ -555,6 +555,7 @@ header h1 {
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
+  margin: 20px 0;
 }
 
 @media (max-width: 480px) {
