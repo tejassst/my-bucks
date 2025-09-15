@@ -42,19 +42,17 @@ function Signup() {
   return (
     <div>
       <header>
-        <div className="header-top">
-          <div className="logo">
-            <img
-              src="/logo.png"
-              alt="Money Tracker Logo"
-              className="logo-img"
-            />
-            <span className="logo-text">My Bucks</span>
-          </div>
-        </div>
-      </header>
-      <div style={{ padding: '2rem' }}>
         <NeonGradientCard>
+          <div className="header-top">
+            <div className="logo">
+              <img
+                src="/logo.png"
+                alt="Money Tracker Logo"
+                className="logo-img"
+              />
+              <span className="logo-text">My Bucks</span>
+            </div>
+          </div>
           <h2>Track your finances and manage your budget with ease.</h2>
           <p>
             My Bucks is a simple and user-friendly budgeting app that helps you
@@ -67,7 +65,7 @@ function Signup() {
             management skills.
           </p>
         </NeonGradientCard>
-      </div>
+      </header>
       <h1>Sign up now!</h1>
       {error && <div className="error-message">{error}</div>}
       <form className="form" onSubmit={handleSubmit}>
