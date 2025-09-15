@@ -517,7 +517,6 @@ header h1 {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e2e8f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px;
@@ -549,6 +548,125 @@ header h1 {
 /* Add pulse animation when changing */
 .Sort select.changing {
   animation: pulse 0.6s ease-in-out;
+}
+.Currency {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .Currency {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+}
+
+.Currency .field-label {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .Currency .field-label {
+    text-align: center;
+    font-size: 0.85rem;
+  }
+}
+
+.Currency select {
+  background: rgba(48, 49, 61, 0.4);
+  color: #e2e8f0;
+  border: 2px solid rgba(79, 70, 229, 0.3);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-width: 140px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+@media (max-width: 480px) {
+  .Currency select {
+    width: 100%;
+    min-width: unset;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+.Currency select:hover {
+  border-color: rgba(79, 70, 229, 0.5);
+  background: rgba(79, 70, 229, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.Currency select:focus {
+  border-color: #4f46e5;
+  background: rgba(79, 70, 229, 0.2);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1),
+    0 4px 12px rgba(79, 70, 229, 0.3);
+  transform: translateY(-1px);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.Currency select:active {
+  transform: translateY(0);
+}
+
+.Currency select option {
+  background: #1a1b26;
+  color: #e2e8f0;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.Currency select option:hover {
+  background: rgba(79, 70, 229, 0.2);
+}
+
+.Currency select option:checked {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+}
+
+.Currency select.changing {
+  animation: pulse 0.6s ease-in-out;
+}
+.Currency {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .Currency {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
 }
 
 /* Footer Styles */

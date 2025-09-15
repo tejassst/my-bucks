@@ -221,7 +221,7 @@ function Home() {
             <option value="lowest">💸 Lowest Amount</option>
           </select>
         </div>
-        <div className="currency">
+        <div className="Currency">
           <label className="field-label" htmlFor="currency">
             Currency:{' '}
           </label>
