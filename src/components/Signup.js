@@ -1,6 +1,7 @@
 import '../style/Signup.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NeonGradientCard from './NeonGradientCard';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -52,6 +53,21 @@ function Signup() {
           </div>
         </div>
       </header>
+      <div style={{ padding: '2rem' }}>
+        <NeonGradientCard>
+          <h2>Track your finances and manage your budget with ease.</h2>
+          <p>
+            My Bucks is a simple and user-friendly budgeting app that helps you
+            manage your finances and stay on top of your budget.
+          </p>
+          <p>
+            Sign up now and start tracking your expenses and saving money. With
+            rolling features and a user-friendly interface, My Bucks is the
+            perfect tool for anyone looking to improve their financial
+            management skills.
+          </p>
+        </NeonGradientCard>
+      </div>
       <h1>Sign up now!</h1>
       {error && <div className="error-message">{error}</div>}
       <form className="form" onSubmit={handleSubmit}>
