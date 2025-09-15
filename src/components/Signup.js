@@ -32,7 +32,6 @@ function Signup() {
         throw new Error(data.error || 'Signup failed');
       }
 
-      // For signup, we don't get a token back, so redirect to login
       navigate('/login');
     } catch (error) {
       setError(error.message || 'Server error');

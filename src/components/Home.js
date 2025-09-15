@@ -12,6 +12,7 @@ function Home() {
   const [description, setDescription] = useState('');
   const [transactions, setTransactions] = useState([]);
   const [sort, setSort] = useState('latest');
+  const [currency, setCurrency] = useState('USD');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -220,10 +221,25 @@ function Home() {
             <option value="lowest">💸 Lowest Amount</option>
           </select>
         </div>
+        <div className="currency">
+          <label className="field-label" htmlFor="currency">
+            Currency:{' '}
+          </label>
+          <select
+            id="currency"
+            value={currency}
+            onChange={(ev) => setCurrency(ev.target.value)}
+            title="Select your currency"
+          >
+            <option value="$">🇺🇸 USD</option>
+            <option value="₹">🇮🇳 INR</option>
+          </select>
+        </div>
       </header>
       <main>
         <h1>
-          ${balance}
+          {currency}
+          {balance}
           <span className="fraction">{fraction}</span>
         </h1>
         <form onSubmit={addTransaction}>
