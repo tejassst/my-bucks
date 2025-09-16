@@ -533,6 +533,77 @@ header h1 {
   transform: translateY(0);
 }
 
+/* Stats Grid Styling */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.stat-card {
+  background: rgba(48, 49, 61, 0.3);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-color: rgba(79, 70, 229, 0.4);
+  background: rgba(48, 49, 61, 0.4);
+}
+
+.stat-card h3 {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0 0 8px 0;
+}
+
+.stat-card .amount {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-card .trend {
+  font-size: 0.8rem;
+  color: #10b981;
+  margin-top: 8px;
+}
+
+.stat-card.expenses .trend {
+  color: #ef4444;
+}
+
+.stat-card .description {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card .amount {
+    font-size: 1.5rem;
+  }
+}
+
 /* Style the dropdown arrow */
 .Sort select {
   appearance: none;
