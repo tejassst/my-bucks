@@ -32,8 +32,29 @@
   }
 }
 
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 body {
-  background: linear-gradient(135deg, #0f0f23 0%, #17181f 50%, #1a1b26 100%);
+  background: linear-gradient(
+    -45deg,
+    #0f0f23 0%,
+    #17181f 25%,
+    #1a1b26 50%,
+    #1f1f35 75%,
+    #0f0f23 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
   background-attachment: fixed;
   color: #e2e8f0;
   min-height: 100vh;

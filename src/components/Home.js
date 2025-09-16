@@ -1,6 +1,7 @@
 import '../style/Home.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Stats from './Stats';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -237,6 +238,7 @@ function Home() {
         </div>
       </header>
       <main>
+        <Stats transactions={validTransactions} />
         <h1>
           {currency}
           {balance}
