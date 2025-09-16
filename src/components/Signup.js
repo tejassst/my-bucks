@@ -40,7 +40,7 @@ function Signup() {
   };
 
   return (
-    <div>
+    <div className="signup-container">
       <header>
         <NeonGradientCard>
           <div className="header-top">
