@@ -47,17 +47,33 @@
 body {
   background: linear-gradient(
     -45deg,
-    #0f0f23 0%,
-    #17181f 25%,
-    #1a1b26 50%,
-    #1f1f35 75%,
-    #0f0f23 100%
+    #212157 0%,
+    #050824 25%,
+    #2c0788 50%,
+    #161627 75%,
+    #24245e 100%
   );
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
+  background-size: 300% 300%;
+  animation: gradientMove 20s ease-in-out infinite;
   background-attachment: fixed;
   color: #e2e8f0;
   min-height: 100vh;
+  position: relative;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 0%,
+    rgba(15, 15, 35, 0.5) 100%
+  );
+  pointer-events: none;
 }
 main {
   max-width: 420px;
