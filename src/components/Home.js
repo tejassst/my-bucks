@@ -2,6 +2,7 @@ import '../style/Home.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Stats from './Stats';
+import NeonGradientCard from './NeonGradientCard';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -185,16 +186,18 @@ function Home() {
   return (
     <div className="App">
       <header>
-        <div className="header-top">
-          <div className="logo">
-            <img
-              src="/logo.png"
-              alt="Money Tracker Logo"
-              className="logo-img"
-            />
-            <span className="logo-text">My Bucks</span>
+        <NeonGradientCard>
+          <div className="header-top">
+            <div className="logo">
+              <img
+                src="/logo.png"
+                alt="Money Tracker Logo"
+                className="logo-img"
+              />
+              <span className="logo-text">My Bucks</span>
+            </div>
           </div>
-        </div>
+        </NeonGradientCard>
         <div className="Sort">
           <label className="field-label" htmlFor="sort">
             Sort by:{' '}
