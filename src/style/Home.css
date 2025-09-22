@@ -47,11 +47,11 @@
 body {
   background: linear-gradient(
     -45deg,
-    #212157 0%,
-    #050824 25%,
+    #1b1b72 0%,
+    #050a36 25%,
     #2c0788 50%,
-    #161627 75%,
-    #24245e 100%
+    #161657 75%,
+    #32328a 100%
   );
   background-size: 300% 300%;
   animation: gradientMove 20s ease-in-out infinite;
