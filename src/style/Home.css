@@ -46,19 +46,20 @@
 
 body {
   background: linear-gradient(
-    -45deg,
-    #1b1b72 0%,
-    #050a36 25%,
-    #2c0788 50%,
-    #161657 75%,
-    #32328a 100%
+    135deg,
+    #0f0f23 0%,
+    #1a1a3e 25%,
+    #1e1e4a 50%,
+    #121236 75%,
+    #0a0a20 100%
   );
-  background-size: 300% 300%;
-  animation: gradientMove 20s ease-in-out infinite;
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease-in-out infinite;
   background-attachment: fixed;
   color: #e2e8f0;
   min-height: 100vh;
   position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 body::after {
@@ -76,68 +77,85 @@ body::after {
   pointer-events: none;
 }
 main {
-  max-width: 420px;
-  margin: 20px auto;
-  padding: 0 20px;
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 0 24px;
   animation: fadeIn 0.5s ease-out;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
 }
 
 @media (min-width: 768px) {
   main {
-    margin: 40px auto;
-    padding: 0 20px 80px 20px;
+    margin: 48px auto;
+    padding: 0 32px 100px 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    max-width: 800px;
   }
 }
 h1 {
   text-align: center;
   color: #fff;
-  margin: 0 0 24px 0;
-  font-size: 2.8rem;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(78, 77, 77, 0.3);
-  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  margin: 0 0 32px 0;
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #818cf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: fadeIn 0.8s ease-out;
 }
 h1 span.fraction {
-  font-size: 1.5rem;
+  font-size: 2rem;
   vertical-align: top;
   display: inline-block;
-  margin-top: 8px;
-  margin-left: 4px;
-  opacity: 0.9;
-  background: linear-gradient(135deg, #ffffff, #e2e8f0);
+  margin-top: 10px;
+  margin-left: 6px;
+  opacity: 0.85;
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 form {
-  margin-top: 20px;
+  margin-top: 32px;
+  background: rgba(30, 30, 58, 0.4);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid rgba(79, 70, 229, 0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
+
 form input {
   width: 100%;
-  background-color: rgba(48, 49, 61, 0.3);
-  color: #ddd;
-  border: 2px solid #30313d;
-  padding: 12px 16px;
-  border-radius: 8px;
+  background-color: rgba(15, 15, 35, 0.5);
+  color: #e2e8f0;
+  border: 2px solid rgba(79, 70, 229, 0.25);
+  padding: 14px 18px;
+  border-radius: 12px;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
+  font-weight: 500;
 }
 
 form input:focus {
-  border-color: #4f46e5;
-  background-color: rgba(79, 70, 229, 0.1);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  border-color: #6366f1;
+  background-color: rgba(79, 70, 229, 0.15);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(79, 70, 229, 0.2);
+  transform: translateY(-1px);
 }
 
 form input:hover {
-  border-color: #434356;
-  background-color: rgba(48, 49, 61, 0.5);
+  border-color: rgba(99, 102, 241, 0.4);
+  background-color: rgba(48, 49, 61, 0.6);
 }
 form input[type='datetime-local'] {
   color: #bbb;
@@ -150,26 +168,35 @@ form input[type='datetime-local']::-webkit-calendar-picker-indicator {
 
 form .field-group {
   position: relative;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 
 form .field-label {
   position: absolute;
-  top: -8px;
-  left: 12px;
-  background: linear-gradient(135deg, #0f0f23 0%, #17181f 50%, #1a1b26 100%);
-  color: #999;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 4px;
+  top: -10px;
+  left: 16px;
+  background: linear-gradient(135deg, #1e1e4a 0%, #1a1a3e 100%);
+  color: #a5b4fc;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
   z-index: 1;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(79, 70, 229, 0.2);
 }
 form div.basic {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+@media (min-width: 640px) {
+  form div.basic {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -204,47 +231,71 @@ form div.basic {
   }
 }
 form button {
-  margin-top: 16px;
+  margin-top: 24px;
   width: 100%;
   border: 0;
-  border-radius: 8px;
-  padding: 14px 20px;
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border-radius: 12px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: white;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+form button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+form button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 form button:hover {
-  background: linear-gradient(135deg, #4338ca, #4f46e5);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
 }
 
 form button:active {
   transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
 }
 div.transactions {
-  margin-top: 24px;
-  gap: 12px;
+  margin-top: 40px;
+  gap: 16px;
   display: flex;
   flex-direction: column;
 }
 div.transaction {
   display: flex;
-  padding: 16px;
+  padding: 20px;
   justify-content: space-between;
-  background-color: rgba(48, 49, 61, 0.2);
-  border: 1px solid rgba(48, 49, 61, 0.4);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(30, 30, 58, 0.5), rgba(30, 30, 58, 0.3));
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
   animation: slideInUp 0.4s ease-out;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 div.transaction::before {
@@ -338,21 +389,25 @@ div.right div.delete button:active {
 header {
   background: linear-gradient(
     135deg,
-    rgba(79, 70, 229, 0.1),
-    rgba(99, 102, 241, 0.05)
+    rgba(30, 30, 58, 0.6),
+    rgba(30, 30, 58, 0.4)
   );
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(79, 70, 229, 0.2);
-  border-radius: 16px;
-  padding: 20px;
-  margin: 20px 20px 32px 20px;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 20px;
+  padding: 28px;
+  margin: 24px auto 40px auto;
+  max-width: 600px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 60px rgba(99, 102, 241, 0.1);
   position: relative;
   overflow: hidden;
   animation: slideInUp 0.6s ease-out;
+}
+
+@media (min-width: 1024px) {
+  header {
+    max-width: 800px;
+  }
 }
 
 /* Header Top Section with Logo */
@@ -556,47 +611,88 @@ header h1 {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 20px;
+  margin-bottom: 40px;
   animation: fadeIn 0.6s ease-out;
 }
 
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
 .stat-card {
-  background: rgba(48, 49, 61, 0.3);
-  border: 1px solid rgba(79, 70, 229, 0.2);
-  border-radius: 12px;
-  padding: 16px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(30, 30, 58, 0.6), rgba(30, 30, 58, 0.4));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
 }
 
 .stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  border-color: rgba(79, 70, 229, 0.4);
-  background: rgba(48, 49, 61, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.25);
+  border-color: rgba(99, 102, 241, 0.4);
+  background: linear-gradient(135deg, rgba(30, 30, 58, 0.7), rgba(30, 30, 58, 0.5));
 }
 
 .stat-card h3 {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  margin: 0 0 8px 0;
+  color: #a5b4fc;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px 0;
 }
 
 .stat-card .amount {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 800;
   margin: 0;
-  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -0.02em;
 }
 
 .stat-card .trend {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: #10b981;
-  margin-top: 8px;
+  margin-top: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .stat-card.expenses .trend {
@@ -605,21 +701,21 @@ header h1 {
 
 .stat-card .description {
   color: #94a3b8;
-  font-size: 0.85rem;
-  margin-top: 8px;
+  font-size: 0.875rem;
+  margin-top: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 500;
 }
 
 @media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
   .stat-card .amount {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+  }
+  
+  .stat-card {
+    padding: 20px;
   }
 }
 
