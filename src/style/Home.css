@@ -107,7 +107,8 @@ main {
 }
 
 .balance-display {
-  text-align: left;
+  margin-top: 5px;
+  text-align: center;
   margin-bottom: 32px;
 }
 

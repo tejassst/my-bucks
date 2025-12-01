@@ -239,9 +239,6 @@ function Home() {
             <option value="₹">🇮🇳 INR</option>
           </select>
         </div>
-      </header>
-      <main>
-        <Stats transactions={validTransactions} />
         <div className="balance-display">
           <div className="balance-label">Total Balance</div>
           <h1>
@@ -250,6 +247,9 @@ function Home() {
             <span className="fraction">{fraction}</span>
           </h1>
         </div>
+      </header>
+      <main>
+        <Stats transactions={validTransactions} />
         <div className="dashboard-container">
           <div className="dashboard-left">
             <form onSubmit={addTransaction}>
