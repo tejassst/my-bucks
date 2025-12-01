@@ -80,12 +80,13 @@ main {
   margin: 20px auto;
   padding: 0 20px;
   animation: fadeIn 0.5s ease-out;
+  padding-bottom: 80px;
 }
 
 @media (min-width: 768px) {
   main {
     margin: 40px auto;
-    padding: 0;
+    padding: 0 20px 80px 20px;
   }
 }
 h1 {
@@ -343,9 +344,11 @@ header {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 16px;
-  padding: 20px 20px 20px 20px;
-  margin: 20px auto 32px auto;
+  padding: 20px;
+  margin: 20px 20px 32px 20px;
   max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
@@ -416,15 +419,15 @@ header {
 @media (min-width: 768px) {
   header {
     margin: 40px auto 40px auto;
-    padding: 28px 24px 24px 24px;
+    padding: 28px 24px;
   }
 }
 
 @media (max-width: 480px) {
   header {
     margin: 16px 20px 24px 20px;
-    max-width: none;
-    padding: 20px 16px 16px 16px;
+    max-width: calc(100% - 40px);
+    padding: 20px 16px;
   }
 }
 
@@ -834,7 +837,13 @@ header h1 {
 
 /* Add padding to main content to prevent overlap with fixed footer */
 main {
-  padding-bottom: 80px;
+  max-width: 420px;
+}
+
+@media (max-width: 480px) {
+  main {
+    max-width: calc(100% - 40px);
+  }
 }
 
 /* Responsive adjustments for the dropdown */
