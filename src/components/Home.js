@@ -242,81 +242,97 @@ function Home() {
       </header>
       <main>
         <Stats transactions={validTransactions} />
-        <h1>
-          {currency}
-          {balance}
-          <span className="fraction">{fraction}</span>
-        </h1>
-        <form onSubmit={addTransaction}>
-          <div className="basic">
-            <div className="field-group">
-              <label className="field-label">Amount & Item</label>
-              <input
-                type="text"
-                className="Amount"
-                value={name}
-                onChange={(ev) => setName(ev.target.value)}
-                placeholder={'+200 samsung tv'}
-                required
-              />
-            </div>
-            <div className="field-group">
-              <label className="field-label">Date</label>
-              <input
-                value={date}
-                onChange={(ev) => setDate(ev.target.value)}
-                type="date"
-                required
-              />
-            </div>
-            <div className="field-group">
-              <label className="field-label">Time</label>
-              <input
-                value={time}
-                onChange={(ev) => setTime(ev.target.value)}
-                type="time"
-                required
-              />
-            </div>
-          </div>
-          <div className="field-group">
-            <label className="field-label">Description</label>
-            <input
-              type="text"
-              value={description}
-              onChange={(ev) => setDescription(ev.target.value)}
-              placeholder={'Additional details'}
-            />
-          </div>
-          <button type="submit">Add new transaction</button>
-        </form>
-        <div className="transactions">
-          {validTransactions.length > 0 &&
-            validTransactions.map((transaction, index) => (
-              <div key={transaction._id || index} className="transaction">
-                <div className="left">
-                  <div className="name">{transaction.name}</div>
-                  <div className="description">{transaction.description}</div>
+        <div className="balance-display">
+          <div className="balance-label">Total Balance</div>
+          <h1>
+            {currency}
+            {balance}
+            <span className="fraction">{fraction}</span>
+          </h1>
+        </div>
+        <div className="dashboard-container">
+          <div className="dashboard-left">
+            <form onSubmit={addTransaction}>
+              <div className="basic">
+                <div className="field-group">
+                  <label className="field-label">Amount & Item</label>
+                  <input
+                    type="text"
+                    className="Amount"
+                    value={name}
+                    onChange={(ev) => setName(ev.target.value)}
+                    placeholder={'+200 samsung tv'}
+                    required
+                  />
                 </div>
-                <div className="right">
-                  <div
-                    className={
-                      'price ' + (transaction.price < 0 ? 'red' : 'green')
-                    }
-                  >
-                    ${Math.abs(transaction.price)}
-                  </div>
-                  <div className="datetime">
-                    {new Date(transaction.datetime).toLocaleString()}
-                  </div>
-                  <div className="delete">
-                    <button onClick={() => deleteTransaction(transaction._id)}>
-                      Delete
-                    </button>
-                  </div>
+                <div className="field-group">
+                  <label className="field-label">Date</label>
+                  <input
+                    value={date}
+                    onChange={(ev) => setDate(ev.target.value)}
+                    type="date"
+                    required
+                  />
+                </div>
+                <div className="field-group">
+                  <label className="field-label">Time</label>
+                  <input
+                    value={time}
+                    onChange={(ev) => setTime(ev.target.value)}
+                    type="time"
+                    required
+                  />
                 </div>
               </div>
-            ))}
+              <div className="field-group">
+                <label className="field-label">Description</label>
+                <input
+                  type="text"
+                  value={description}
+                  onChange={(ev) => setDescription(ev.target.value)}
+                  placeholder={'Additional details'}
+                />
+              </div>
+              <button type="submit">Add new transaction</button>
+            </form>
+          </div>
+          <div className="dashboard-right">
+            <div className="transactions-container">
+              <h2>Recent Transactions</h2>
+              <div className="transactions">
+                {validTransactions.length > 0 &&
+                  validTransactions.map((transaction, index) => (
+                    <div key={transaction._id || index} className="transaction">
+                      <div className="left">
+                        <div className="name">{transaction.name}</div>
+                        <div className="description">
+                          {transaction.description}
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div
+                          className={
+                            'price ' + (transaction.price < 0 ? 'red' : 'green')
+                          }
+                        >
+                          ${Math.abs(transaction.price)}
+                        </div>
+                        <div className="datetime">
+                          {new Date(transaction.datetime).toLocaleString()}
+                        </div>
+                        <div className="delete">
+                          <button
+                            onClick={() => deleteTransaction(transaction._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
         </div>
       </main>
       <footer className="footer">
