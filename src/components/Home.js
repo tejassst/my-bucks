@@ -1,8 +1,7 @@
-import '../style/Home.css';
+import '../style/Dashboard.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Stats from './Stats';
-import NeonGradientCard from './NeonGradientCard';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -184,87 +183,73 @@ function Home() {
   };
 
   return (
-    <div className="App">
-      <header>
-        <NeonGradientCard>
-          <div className="header-top">
-            <div className="logo">
-              <img
-                src="/logo.png"
-                alt="Money Tracker Logo"
-                className="logo-img"
-              />
-              <span className="logo-text">My Bucks</span>
-            </div>
+    <div className="dashboard-layout">
+      {/* Top Navigation Bar */}
+      <nav className="top-navbar">
+        <div className="navbar-left">
+          <div className="logo">
+            <img
+              src="/logo.png"
+              alt="Money Tracker Logo"
+              className="logo-img"
+            />
+            <span className="logo-text">My Bucks</span>
           </div>
-        </NeonGradientCard>
-        <div className="Sort">
-          <label className="field-label" htmlFor="sort">
-            Sort by:{' '}
-          </label>
-          <select
-            id="sort"
-            value={sort}
-            onChange={(ev) => {
-              const newSort = ev.target.value;
+        </div>
+        <div className="navbar-center">
+          <div className="balance-display">
+            <span className="balance-label">Balance</span>
+            <h1 className="balance-amount">
+              {currency}
+              {balance}
+              <span className="fraction">.{fraction}</span>
+            </h1>
+          </div>
+        </div>
+        <div className="navbar-right">
+          <div className="controls">
+            <select
+              className="currency-select"
+              value={currency}
+              onChange={(ev) => setCurrency(ev.target.value)}
+              title="Select your currency"
+            >
+              <option value="$">🇺🇸 USD</option>
+              <option value="₹">🇮🇳 INR</option>
+            </select>
+            <button onClick={handleLogout} className="logout-btn">
+              Logout
+            </button>
+          </div>
+        </div>
+      </nav>
 
-              // Add changing class for animation
-              ev.target.classList.add('changing');
-              setTimeout(() => {
-                ev.target.classList.remove('changing');
-              }, 600);
+      {/* Main Dashboard Content */}
+      <main className="dashboard-main">
+        {/* Stats Cards Section */}
+        <div className="stats-section">
+          <Stats transactions={validTransactions} currency={currency} />
+        </div>
 
-              setSort(newSort);
-            }}
-            title="Select how to sort your transactions"
-          >
-            <option value="">🔄 Choose sorting</option>
-            <option value="latest">⏳ Latest First</option>
-            <option value="oldest">🕒 Oldest First</option>
-            <option value="highest">💰 Highest Amount</option>
-            <option value="lowest">💸 Lowest Amount</option>
-          </select>
-        </div>
-        <div className="Currency">
-          <label className="field-label" htmlFor="currency">
-            Currency:{' '}
-          </label>
-          <select
-            id="currency"
-            value={currency}
-            onChange={(ev) => setCurrency(ev.target.value)}
-            title="Select your currency"
-          >
-            <option value="$">🇺🇸 USD</option>
-            <option value="₹">🇮🇳 INR</option>
-          </select>
-        </div>
-        <div className="balance-display">
-          <div className="balance-label">Total Balance</div>
-          <h1>
-            {currency}
-            {balance}
-            <span className="fraction">{fraction}</span>
-          </h1>
-          <Stats transactions={validTransactions} />
-        </div>
-      </header>
-      <main>
-        <div className="dashboard-container">
-          <div className="dashboard-left">
+        {/* Dashboard Grid */}
+        <div className="dashboard-grid">
+          {/* Add Transaction Form */}
+          <div className="dashboard-card form-card">
+            <h2 className="card-title">Add Transaction</h2>
             <form onSubmit={addTransaction}>
-              <div className="basic">
+              <div className="form-row">
                 <div className="field-group">
                   <label className="field-label">Amount & Item</label>
                   <input
                     type="text"
-                    className="Amount"
                     value={name}
                     onChange={(ev) => setName(ev.target.value)}
-                    placeholder={'+200 samsung tv'}
+                    placeholder="+200 samsung tv"
                     required
                   />
                 </div>
+              </div>
+              <div className="form-row two-col">
                 <div className="field-group">
                   <label className="field-label">Date</label>
                   <input
@@ -284,62 +269,81 @@ function Home() {
                   />
                 </div>
               </div>
-              <div className="field-group">
-                <label className="field-label">Description</label>
-                <input
-                  type="text"
-                  value={description}
-                  onChange={(ev) => setDescription(ev.target.value)}
-                  placeholder={'Additional details'}
-                />
+              <div className="form-row">
+                <div className="field-group">
+                  <label className="field-label">Description</label>
+                  <input
+                    type="text"
+                    value={description}
+                    onChange={(ev) => setDescription(ev.target.value)}
+                    placeholder="Additional details"
+                  />
+                </div>
               </div>
-              <button type="submit">Add new transaction</button>
+              <button type="submit" className="submit-btn">
+                Add Transaction
+              </button>
             </form>
           </div>
-          <div className="dashboard-right">
-            <div className="transactions-container">
-              <h2>Recent Transactions</h2>
-              <div className="transactions">
-                {validTransactions.length > 0 &&
-                  validTransactions.map((transaction, index) => (
-                    <div key={transaction._id || index} className="transaction">
-                      <div className="left">
-                        <div className="name">{transaction.name}</div>
-                        <div className="description">
-                          {transaction.description}
-                        </div>
+
+          {/* Transactions List */}
+          <div className="dashboard-card transactions-card">
+            <div className="card-header">
+              <h2 className="card-title">Recent Transactions</h2>
+              <select
+                className="sort-select"
+                value={sort}
+                onChange={(ev) => setSort(ev.target.value)}
+                title="Sort transactions"
+              >
+                <option value="latest">⏳ Latest</option>
+                <option value="oldest">🕒 Oldest</option>
+                <option value="highest">💰 Highest</option>
+                <option value="lowest">💸 Lowest</option>
+              </select>
+            </div>
+            <div className="transactions-list">
+              {validTransactions.length > 0 ? (
+                validTransactions.map((transaction, index) => (
+                  <div
+                    key={transaction._id || index}
+                    className="transaction-item"
+                  >
+                    <div className="transaction-info">
+                      <div className="transaction-name">{transaction.name}</div>
+                      <div className="transaction-desc">
+                        {transaction.description}
                       </div>
-                      <div className="right">
-                        <div
-                          className={
-                            'price ' + (transaction.price < 0 ? 'red' : 'green')
-                          }
-                        >
-                          ${Math.abs(transaction.price)}
-                        </div>
-                        <div className="datetime">
-                          {new Date(transaction.datetime).toLocaleString()}
-                        </div>
-                        <div className="delete">
-                          <button
-                            onClick={() => deleteTransaction(transaction._id)}
-                          >
-                            Delete
-                          </button>
-                        </div>
+                      <div className="transaction-date">
+                        {new Date(transaction.datetime).toLocaleString()}
                       </div>
                     </div>
-                  ))}
-              </div>
+                    <div className="transaction-actions">
+                      <div
+                        className={`transaction-amount ${
+                          transaction.price < 0 ? 'negative' : 'positive'
+                        }`}
+                      >
+                        {transaction.price < 0 ? '-' : '+'}
+                        {currency}
+                        {Math.abs(transaction.price)}
+                      </div>
+                      <button
+                        onClick={() => deleteTransaction(transaction._id)}
+                        className="delete-btn"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="no-transactions">No transactions yet</div>
+              )}
             </div>
           </div>
         </div>
       </main>
-      <footer className="footer">
-        <button onClick={handleLogout} className="logout-button">
-          Logout
-        </button>
-      </footer>
     </div>
   );
 }

@@ -26,8 +26,8 @@
     "winston": "^3.11.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "server": "node api/index.js",
+    "start": "PORT=3000 react-scripts start",
+    "server": "PORT=4040 node api/index.js",
     "dev": "concurrently --kill-others --prefix=\"[{name}]\" --names=\"API,WEB\" \"npm run server\" \"npm start\"",
     "build": "react-scripts build",
     "build:prod": "NODE_ENV=production npm run build",
