@@ -246,10 +246,10 @@ function Home() {
             {balance}
             <span className="fraction">{fraction}</span>
           </h1>
+          <Stats transactions={validTransactions} />
         </div>
       </header>
       <main>
-        <Stats transactions={validTransactions} />
         <div className="dashboard-container">
           <div className="dashboard-left">
             <form onSubmit={addTransaction}>
